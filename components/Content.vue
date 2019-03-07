@@ -20,12 +20,20 @@
         <div>mapGetters值:{{numType}}</div>
       </div>
     </div>
+    {{homeData}}{{aa}}
   </div>
 </template>
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 export default {
-  async mounted() {
+  mounted() {
+    console.log(this.bbb, "------homeData---");
+    this.$nextTick(() => {
+      console.log(this.bbb, "----1111--homeData---");
+    });
+    setTimeout(()=>{
+      console.log(this.bbb, "----1111--homeData---");
+    },1000)
     this.$bus.$on("todo", e => {
       console.log(e, "----e------");
     });
@@ -77,7 +85,11 @@ export default {
   watch: {},
   computed: {
     ...mapState("homePage", ["homeData"]),
-    ...mapGetters("homePage", ["numType"])
+    ...mapState("homePage", { aa: state => state.homeData }),
+    ...mapGetters("homePage", ["numType"]),
+    bbb() {
+      return this.$store.state.homePage.homeData;
+    }
   }
 };
 </script>

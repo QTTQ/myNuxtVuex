@@ -37,7 +37,8 @@ module.exports = {
   plugins: [
     '@/plugins/iview',
     '@/plugins/aaa',
-    '@/plugins/axios'
+    '@/plugins/axios',
+    { src: '~/plugins/localStorage.js', ssr: false }
   ],
 
   /*
